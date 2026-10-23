@@ -1,9 +1,11 @@
-
 FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y unzip \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 COPY arabic_step_by_step_render_ready.zip /tmp/app.zip
