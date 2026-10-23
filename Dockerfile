@@ -1,3 +1,4 @@
+
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -13,8 +14,8 @@ RUN unzip -q /tmp/app.zip -d /tmp/extracted \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV PORT=3000
+ENV PORT=10000
 
-EXPOSE 3000
+EXPOSE 10000
 
-CMD ["sh", "-c", "reflex run --env prod --frontend-port ${PORT:-3000} --backend-port 8000"]
+CMD ["sh", "-c", "reflex run --env prod --frontend-port ${PORT:-10000} --backend-port ${PORT:-10000}"]
