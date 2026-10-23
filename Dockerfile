@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     unzip \
+    espeak-ng \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 COPY arabic_step_by_step_render_ready.zip /tmp/app.zip
@@ -20,4 +22,5 @@ ENV PORT=10000
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "reflex run --env prod --frontend-port ${PORT:-10000} --backend-port ${PORT:-10000}"]
+CMD ["sh", "-c", "reflex run --env prod --single-port --frontend-port ${PORT:-10000}"]
+
