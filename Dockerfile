@@ -19,7 +19,9 @@ RUN unzip -q /tmp/app.zip -d /tmp/extracted \
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PORT=10000
+ENV GRANIAN_WORKERS=1
+ENV WEB_CONCURRENCY=1
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "exec reflex run --env prod --single-port --frontend-port ${PORT:-10000}"]
+CMD ["sh", "-c", "exec reflex run --env prod --single-port --backend-host 0.0.0.0 --frontend-port ${PORT:-10000} --backend-port ${PORT:-10000}"]
